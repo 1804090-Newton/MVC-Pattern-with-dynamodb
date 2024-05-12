@@ -1,6 +1,7 @@
 const AWS = require('../config/aws');
 
-const docClient = new AWS.DynamoDB.DocumentClient();
+
+const docClient = new AWS.DynamoDB.DocumentClient({ apiVersion: process.env.AWS_API_VERSION});
 const TABLE_NAME = 'Users';
 
 const User = {
@@ -37,7 +38,7 @@ const User = {
     const params = {
       TableName: TABLE_NAME,
       Item: {
-        id: Date.now().toString(),
+        id: Date.now(),
         ...userData
       }
     };
